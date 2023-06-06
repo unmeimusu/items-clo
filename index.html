@@ -5,9 +5,9 @@
   <style>
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f2f2f2;
       margin: 0;
       padding: 0;
-      transition: background-color 0.3s ease;
     }
 
     .container {
@@ -74,37 +74,6 @@
       color: #777;
       margin-top: 0.5rem;
     }
-
-    /* Dark theme */
-    body.dark-mode {
-      background-color: #333;
-      color: #fff;
-    }
-
-    body.dark-mode .container {
-      background-color: #444;
-      color: #fff;
-    }
-
-    body.dark-mode h1 {
-      color: #fff;
-    }
-
-    body.dark-mode li {
-      background-color: #555;
-      color: #fff;
-      box-shadow: 0px 2px 4px rgba(255, 255, 255, 0.1);
-    }
-
-    body.dark-mode li:hover {
-      background-color: #666;
-    }
-
-    body.dark-mode #searchInput {
-      background-color: #444;
-      border-color: #777;
-      color: #fff;
-    }
   </style>
 </head>
 <body>
@@ -119,7 +88,25 @@
   <script>
     // Sample contacts data
     const contacts = [
-      // Contacts data...
+      {
+        name: "John Doe",
+        image: "https://via.placeholder.com/50",
+        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+        labels: ["john@example.com", "doe@example.com"]
+      },
+      {
+        name: "Jane Smith",
+        image: "https://via.placeholder.com/50",
+        description: "Ut sollicitudin justo sit amet est tincidunt rhoncus.",
+        labels: ["jane@example.com"]
+      },
+      {
+        name: "Adam Johnson",
+        image: "https://via.placeholder.com/50",
+        description: "Fusce eleifend justo et eleifend vestibulum.",
+        labels: ["adam@example.com", "ajohnson@example.com"]
+      },
+      // Add more contacts here...
     ];
 
     // Render contacts
@@ -128,35 +115,57 @@
       contactList.innerHTML = "";
 
       data.forEach((contact) => {
-        // Rendering code...
+        const li = document.createElement("li");
+
+        const contactImage = document.createElement("img");
+        contactImage.src = contact.image;
+        contactImage.alt = contact.name;
+        contactImage.classList.add("contact-image");
+        li.appendChild(contactImage);
+
+        const contactDetails = document.createElement("div");
+        contactDetails.classList.add("contact-details");
+
+        const contactName = document.createElement("div");
+        contactName.classList.add("contact-name");
+        contactName.textContent = contact.name;
+        contactDetails.appendChild(contactName);
+
+        const contactDescription = document.createElement("div");
+        contactDescription.classList.add("contact-description");
+        contactDescription.textContent = contact.description;
+        contactDetails.appendChild(contactDescription);
+
+        const contactLabels = document.createElement("ul");
+        contactLabels.classList.add("contact-labels");
+        contact.labels.forEach((label) => {
+          const labelItem = document.createElement("li");
+          labelItem.textContent = label;
+          contactLabels.appendChild(labelItem);
+        });
+        contactDetails.appendChild(contactLabels);
+
+        li.appendChild(contactDetails);
+
+        contactList.appendChild(li);
       });
     };
 
     // Initial rendering
     renderContacts(contacts);
 
-    // Search functionality...
-    
-    // Dark mode toggle
-    const body = document.body;
-    const toggleSwitch = document.createElement("label");
-    toggleSwitch.classList.add("switch");
-    toggleSwitch.innerHTML = `
-      <input type="checkbox" id="themeSwitch">
-      <span class="slider round"></span>
-    `;
-    document.body.insertBefore(toggleSwitch, document.body.firstChild);
-    const themeSwitch = document.getElementById("themeSwitch");
+    // Search functionality
+    const searchInput = document.getElementById("searchInput");
+    searchInput.addEventListener("input", () => {
+      const searchQuery = searchInput.value.toLowerCase();
+      const filteredContacts = contacts.filter((contact) => {
+        const name = contact.name.toLowerCase();
+        const labels = contact.labels.join(" ").toLowerCase();
+        return name.includes(searchQuery) || labels.includes(searchQuery);
+      });
 
-    const switchTheme = (e) => {
-      if (e.target.checked) {
-        body.classList.add("dark-mode");
-      } else {
-        body.classList.remove("dark-mode");
-      }
-    };
-
-    themeSwitch.addEventListener("change", switchTheme);
+      renderContacts(filteredContacts);
+    });
   </script>
 </body>
 </html>
