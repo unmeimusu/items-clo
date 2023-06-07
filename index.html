@@ -39,8 +39,10 @@
     }
 
     li {
-      display: flex;
-      flex-direction: column;
+      display: grid;
+      grid-template-columns: 70px 1fr;
+      grid-gap: 1rem;
+      align-items: center;
       margin-bottom: 0.5rem;
       padding: 1rem;
       background-color: #fff;
@@ -58,21 +60,40 @@
       height: 50px;
       object-fit: cover;
       border-radius: 50%;
-      margin-bottom: 1rem;
     }
 
     .contact-details {
-      flex-grow: 1;
+      display: grid;
+      grid-template-rows: auto 1fr auto;
     }
 
     .contact-name {
       font-weight: bold;
     }
 
+    .contact-description {
+      margin-bottom: 0.5rem;
+    }
+
+    .contact-price {
+      font-weight: bold;
+      color: #555;
+    }
+
     .contact-labels {
-      font-size: 14px;
-      color: #777;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+      grid-gap: 0.5rem;
       margin-top: 0.5rem;
+    }
+
+    .contact-label {
+      padding: 0.2rem 0.5rem;
+      font-size: 12px;
+      font-weight: bold;
+      color: #fff;
+      background-color: #555;
+      border-radius: 4px;
     }
   </style>
 </head>
@@ -89,21 +110,24 @@
     // Sample contacts data
     const contacts = [
       {
-        name: "John Doe",
-        image: "https://via.placeholder.com/50",
-        description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-        labels: ["john@example.com", "doe@example.com"]
+        name: "Map Transfer Scroll(7Days)",
+        image: "./a1/a11.png",
+        description: "Enables user to travel instantly. Will disappear with expiration or use. Cannot use during battle or while moving",
+        price: "15.99 USD",
+        labels: ["Alker Harbor", "Mysterious Trader(Alice)"]
       },
       {
         name: "Jane Smith",
         image: "https://via.placeholder.com/50",
         description: "Ut sollicitudin justo sit amet est tincidunt rhoncus.",
+        price: "9.99 USD",
         labels: ["jane@example.com"]
       },
       {
         name: "Adam Johnson",
         image: "https://via.placeholder.com/50",
         description: "Fusce eleifend justo et eleifend vestibulum.",
+        price: "12.99 USD",
         labels: ["adam@example.com", "ajohnson@example.com"]
       },
       // Add more contacts here...
@@ -136,12 +160,18 @@
         contactDescription.textContent = contact.description;
         contactDetails.appendChild(contactDescription);
 
-        const contactLabels = document.createElement("ul");
+        const contactPrice = document.createElement("div");
+        contactPrice.classList.add("contact-price");
+        contactPrice.textContent = contact.price;
+        contactDetails.appendChild(contactPrice);
+
+        const contactLabels = document.createElement("div");
         contactLabels.classList.add("contact-labels");
         contact.labels.forEach((label) => {
-          const labelItem = document.createElement("li");
-          labelItem.textContent = label;
-          contactLabels.appendChild(labelItem);
+          const labelElement = document.createElement("span");
+          labelElement.classList.add("contact-label");
+          labelElement.textContent = label;
+          contactLabels.appendChild(labelElement);
         });
         contactDetails.appendChild(contactLabels);
 
