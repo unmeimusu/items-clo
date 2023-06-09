@@ -5,20 +5,20 @@
   <style>
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background-color: #1c1c1c;
+      background-color: #f2f2f2;
       margin: 0;
       padding: 0;
     }
 
     .container {
-      max-width: 800px;
+      max-width: 500px;
       margin: 0 auto;
       padding: 20px;
     }
 
     h1 {
       text-align: center;
-      color: #fff;
+      color: #333;
       margin-top: 0;
     }
 
@@ -30,52 +30,44 @@
       border: 1px solid #ccc;
       border-radius: 4px;
       font-size: 16px;
-      background-color: #2c2c2c;
-      color: #fff;
     }
 
     ul {
       list-style-type: none;
       padding: 0;
       margin: 0;
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-      grid-gap: 1rem;
     }
 
     li {
-      display: flex;
-      flex-direction: column;
+      display: grid;
+      grid-template-columns: 70px 1fr;
+      grid-gap: 1rem;
       align-items: center;
+      margin-bottom: 0.5rem;
       padding: 1rem;
-      background-color: #333;
+      background-color: #fff;
       border-radius: 4px;
-      box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+      box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
       transition: background-color 0.2s ease-in-out;
     }
 
     li:hover {
-      background-color: #555;
+      background-color: #f9f9f9;
     }
 
     .contact-image {
       width: 50px;
       height: 50px;
       object-fit: cover;
-      margin-bottom: 1rem;
     }
 
     .contact-details {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-      color: #fff;
+      display: grid;
+      grid-template-rows: auto 1fr auto;
     }
 
     .contact-name {
       font-weight: bold;
-      margin-bottom: 0.5rem;
     }
 
     .contact-description {
@@ -84,14 +76,13 @@
 
     .contact-price {
       font-weight: bold;
-      color: #bbb;
-      margin-bottom: 0.5rem;
+      color: #555;
     }
 
     .contact-labels {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+      grid-gap: 0.5rem;
       margin-top: 0.5rem;
     }
 
@@ -102,8 +93,6 @@
       color: #fff;
       background-color: #555;
       border-radius: 4px;
-      margin-right: 0.5rem;
-      margin-bottom: 0.5rem;
     }
   </style>
 </head>
@@ -2841,7 +2830,7 @@
         description: "An organic fertilizer for crops from lv8 seeds. It drastically increases the vital force of crops.",
         price: "84,724 Gold",
         labels: ["Alker Farms","NPC Farm Supplies (Andrew)"]
-      }
+      },
     ];
     // Render contacts
     const renderContacts = (data) => {
