@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>List of Shop Items in Celestia Luna Online</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #1c1c1c;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    h1 {
+      text-align: center;
+      color: #fff;
+      margin-top: 0;
+    }
+
+    #searchInput {
+      margin-bottom: 1rem;
+      padding: 0.5rem;
+      width: 100%;
+      box-sizing: border-box;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: 16px;
+      background-color: #2c2c2c;
+      color: #fff;
+    }
+
+    .search-button {
+      display: block;
+      margin: 1rem auto;
+      font-size: 16px;
+      font-weight: bold;
+      color: #fff;
+      background-color: #555;
+      border: none;
+      border-radius: 4px;
+      padding: 0.5rem 1rem;
+      cursor: pointer;
+      transition: background-color 0.2s ease-in-out;
+    }
+
+    .search-button:hover {
+      background-color: #777;
+    }
+
+    ul {
+      list-style-type: none;
+      padding: 0;
+      margin: 0;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      grid-gap: 1rem;
+    }
+
+    li {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 1rem;
+      background-color: #333;
+      border-radius: 4px;
+      box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+      transition: background-color 0.2s ease-in-out;
+    }
+
+    li:hover {
+      background-color: #555;
+    }
+
+    .its-img {
+      width: 50px;
+      height: 50px;
+      object-fit: cover;
+      margin-bottom: 1rem;
+    }
+
+    .its-details {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      color: #fff;
+    }
+
+    .its-name {
+      font-weight: bold;
+      margin-bottom: 0.5rem;
+    }
+
+    .its-description {
+      margin-bottom: 0.5rem;
+    }
+
+    .its-price {
+      font-weight: bold;
+      color: #bbb;
+      margin-bottom: 0.5rem;
+    }
+
+    .its-labels {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-top: 0.5rem;
+    }
+
+    .its-label {
+      padding: 0.2rem 0.5rem;
+      font-size: 12px;
+      font-weight: bold;
+      color: #fff;
+      background-color: #555;
+      border-radius: 4px;
+      margin-right: 0.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .reset-button {
+      display: flex;
+      margin: auto;
+      margin-top: 1rem;
+      margin-bottom: 1rem;
+      font-size: 12px;
+      font-weight: bold;
+      color: #fff;
+      background-color: #555;
+      border: none;
+      border-radius: 4px;
+      padding: 0.2rem 0.5rem;
+      cursor: pointer;
+      transition: background-color 0.2s ease-in-out;
+    }
+
+    .reset-button:hover {
+      background-color: #777;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>List of Shop Items in Celestia Luna Online</h1>
+    <input type="text" id="searchInput" placeholder="Search item name or label...">
+    <button class="search-button" id="searchButton">Search</button>
+    <div id="labelList"></div>
+    <button class="reset-button" id="resetButton">Reset</button>
+    <ul id="itsList"></ul>
+  </div>
+
+  <script>
+    // Sample items data
+    const its = [
+      {
+        name: "Map Transfer Scroll(7Days)",
+        image: "https://cdn.jsdelivr.net/gh/unmeimusu/items-clo@main/a1/a11.png",
+        description: "Enables user to travel instantly. Will disappear with expiration or use. Cannot use during battle or while moving",
+        price: "100 Gold",
+        labels: ["Alker Harbor", "NPC Mysterious Trader (Alice)", "Nera Castle", "NPC Mysterious Trader (Caroline)"]
+      },
+      {
+        name: "Cactus Water",
+        image: "./a47/bt2.png",
+        description: "Better than no water at all! Slowly restores 850 HP. May not be used during battle or while moving.",
+        price: "6,499 Gold",
+        labels: ["Sahel Zone", "NPC Innkeeper (Audrius)", "Oasis of Parasus", "NPC Innkeeper (Leiona)"]
+      }
+    ];
+
+    let filteredData = its.slice();
+
+    const renderIt = (data) => {
+      const itsList = document.getElementById("itsList");
+      const labelList = document.getElementById("labelList");
+      itsList.innerHTML = "";
+      labelList.innerHTML = "";
+
+      // Rendering items
+      data.forEach((its) => {
+        const li = document.createElement("li");
+
+        const itsImg = document.createElement("img");
+        itsImg.src = its.image;
+        itsImg.alt = its.name;
+        itsImg.classList.add("its-img");
+        li.appendChild(itsImg);
+
+        const itsDetails = document.createElement("div");
+        itsDetails.classList.add("its-details");
+
+        const itsName = document.createElement("div");
+        itsName.classList.add("its-name");
+        itsName.textContent = its.name;
+        itsDetails.appendChild(itsName);
+
+        const itsDesc = document.createElement("div");
+        itsDesc.classList.add("its-description");
+        itsDesc.textContent = its.description;
+        itsDetails.appendChild(itsDesc);
+
+        const itsPrice = document.createElement("div");
+        itsPrice.classList.add("its-price");
+        itsPrice.textContent = its.price;
+        itsDetails.appendChild(itsPrice);
+
+        const itsTag = document.createElement("div");
+        itsTag.classList.add("its-labels");
+        its.labels.forEach((label) => {
+          const tagElmn = document.createElement("span");
+          tagElmn.classList.add("its-label");
+          tagElmn.textContent = label;
+          itsTag.appendChild(tagElmn);
+        });
+        itsDetails.appendChild(itsTag);
+
+        li.appendChild(itsDetails);
+
+        itsList.appendChild(li);
+      });
+
+      // Rendering label list
+      const allLabels = new Set();
+      data.forEach((its) => {
+        its.labels.forEach((label) => {
+          allLabels.add(label);
+        });
+      });
+
+      allLabels.forEach((label) => {
+        const labelElmn = document.createElement("span");
+        labelElmn.classList.add("its-label");
+        labelElmn.textContent = label;
+        labelList.appendChild(labelElmn);
+      });
+    };
+
+    const searchButton = document.getElementById("searchButton");
+    const resetButton = document.getElementById("resetButton");
+    const searchInput = document.getElementById("searchInput");
+
+    // Search button event listener
+    searchButton.addEventListener("click", () => {
+      const searchTerm = searchInput.value.trim().toLowerCase();
+      if (searchTerm === "") {
+        filteredData = its.slice();
+      } else {
+        filteredData = its.filter((its) =>
+          its.name.toLowerCase().includes(searchTerm) ||
+          its.labels.some((label) => label.toLowerCase().includes(searchTerm))
+        );
+      }
+      renderIt(filteredData);
+    });
+
+    // Reset button event listener
+    resetButton.addEventListener("click", () => {
+      searchInput.value = "";
+      filteredData = its.slice();
+      renderIt(filteredData);
+    });
+
+    // Initial rendering
+    renderIt(filteredData);
+  </script>
+</body>
+</html>
