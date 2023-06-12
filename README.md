@@ -1,4 +1,4 @@
-# Items List on Celestia Luna Online
+# Items List in Celestia Luna Online
 ## Description of Contents
 ### List of explored maps in Celestia Luna Online.
 - [x] Alker Harbor
