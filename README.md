@@ -1,6 +1,6 @@
 # Items List on Celestia Luna Online
 ## Description of Contents
-### List of explored maps on Celestia Luna Online.
+### List of explored maps in Celestia Luna Online.
 - [x] Alker Harbor
 - [x] Alker Farms
 - [x] Nera Castle
