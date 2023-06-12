@@ -23,8 +23,14 @@
       margin-top: 0;
     }
 
-    #searchInput {
+    .search-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
       margin-bottom: 1rem;
+    }
+
+    #searchInput {
       padding: 0.5rem;
       width: 100%;
       box-sizing: border-box;
@@ -36,8 +42,7 @@
     }
 
     .search-button {
-      display: block;
-      margin: 1rem auto;
+      margin-left: 1rem;
       font-size: 16px;
       font-weight: bold;
       color: #fff;
@@ -50,6 +55,31 @@
     }
 
     .search-button:hover {
+      background-color: #777;
+    }
+
+    .result-count {
+      text-align: center;
+      color: #bbb;
+      margin-bottom: 1rem;
+    }
+
+    .reset-button {
+      display: flex;
+      margin: auto;
+      font-size: 14px;
+      font-weight: bold;
+      color: #fff;
+      background-color: #555;
+      border: none;
+      border-radius: 4px;
+      padding: 0.5rem 1rem;
+      cursor: pointer;
+      transition: background-color 0.2s ease-in-out;
+      margin-bottom: 15px;
+    }
+
+    .reset-button:hover {
       background-color: #777;
     }
 
@@ -114,9 +144,9 @@
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
-      align-items: center; /* Added */
+      align-items: center;
       margin-top: 0.5rem;
-      margin-bottom: 1rem; /* Increased margin for spacing */
+      margin-bottom: 1rem;
     }
 
     .its-label {
@@ -132,8 +162,8 @@
       margin-bottom: 0.5rem;
       cursor: pointer;
       transition: background-color 0.2s ease-in-out;
-      text-align: center; /* Added */
-      width: auto; /* Added */
+      text-align: center;
+      width: auto;
     }
 
     .labelList {
@@ -143,38 +173,47 @@
     .its-label:hover {
       background-color: #777;
     }
-    .reset-button {
-      display: flex;
-      margin: auto;
-      margin-top: 1rem;
-      margin-bottom: 1rem;
-      font-size: 12px;
-      font-weight: bold;
+    .footer {
+      text-align: center;
+      padding: 20px;
+      background-color: #333;
       color: #fff;
-      background-color: #555;
-      border: none;
-      border-radius: 4px;
-      padding: 0.2rem 0.5rem;
-      cursor: pointer;
-      transition: background-color 0.2s ease-in-out;
+      font-size: 14px;
     }
 
-    .reset-button:hover {
-      background-color: #777;
+    .footer-text {
+      margin: 0;
+    }
+
+    .footer-link {
+      color: #fff;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .footer-link:hover {
+      text-decoration: underline;
     }
   </style>
 </head>
 <body>
   <div class="container">
-    <!-- HTML code omitted for brevity -->
     <h1>List of Shop Items in Celestia Luna Online</h1>
-    <input type="text" id="searchInput" placeholder="Search item name or label...">
-    <button class="search-button" id="searchButton">Search</button>
-    <div id="labelList" class="labelList"></div>
+    <div class="search-container">
+      <input type="text" id="searchInput" placeholder="Search item name, label, or description...">
+      <button class="search-button" id="searchButton">Search</button>
+    </div>
+    <div class="result-count" id="resultCount"></div>
     <button class="reset-button" id="resetButton">Reset</button>
+    <div id="labelList" class="labelList"></div>
     <ul id="itsList"></ul>
   </div>
-
+  <div class="footer">
+    <p class="footer-text">
+      Made with 💕 @2023 copyright - CLO community from
+      <a class="footer-link" href="https://github.com/unmeimusu">CruncyChoco</a>
+    </p>
+  </div>
   <script>
     // Sample items data
     const its = [
@@ -199,6 +238,7 @@
     const renderIt = (data) => {
       const itsList = document.getElementById("itsList");
       const labelList = document.getElementById("labelList");
+      const resultCount = document.getElementById("resultCount");
       itsList.innerHTML = "";
       labelList.innerHTML = "";
 
@@ -259,6 +299,9 @@
         labelElmn.textContent = label;
         labelList.appendChild(labelElmn);
       });
+
+      // Update result count
+      resultCount.textContent = `Total Items: ${data.length}`;
     };
 
     const searchButton = document.getElementById("searchButton");
@@ -268,16 +311,7 @@
 
     // Search button event listener
     searchButton.addEventListener("click", () => {
-      const searchTerm = searchInput.value.trim().toLowerCase();
-      if (searchTerm === "") {
-        filteredData = its.slice();
-      } else {
-        filteredData = its.filter((its) =>
-          its.name.toLowerCase().includes(searchTerm) ||
-          its.labels.some((label) => label.toLowerCase().includes(searchTerm))
-        );
-      }
-      renderIt(filteredData);
+      performSearch();
     });
 
     // Reset button event listener
@@ -302,6 +336,30 @@
         renderIt(filteredData);
       }
     });
+
+    // Perform search on Enter key press
+    searchInput.addEventListener("keydown", (event) => {
+      if (event.key === "Enter") {
+        event.preventDefault();
+        performSearch();
+      }
+    });
+
+    // Function to perform search
+    const performSearch = () => {
+      const searchTerm = searchInput.value.trim().toLowerCase();
+      if (searchTerm === "") {
+        filteredData = its.slice();
+      } else {
+        filteredData = its.filter(
+          (its) =>
+            its.name.toLowerCase().includes(searchTerm) ||
+            its.labels.some((label) => label.toLowerCase().includes(searchTerm)) ||
+            its.description.toLowerCase().includes(searchTerm)
+        );
+      }
+      renderIt(filteredData);
+    };
 
     // Initial rendering
     renderIt(filteredData);
