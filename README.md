@@ -5,6 +5,7 @@ On aired preview of content : [Link](https://clotes.gitlab.io)
 - [x] Alker Harbor
 - [x] Alker Farms
 - [x] Nera Castle
+- [x] Nera Harbor
 - [x] Zakandia Outpost
 - [x] Zakandia
 - [x] Tarintus
@@ -13,7 +14,6 @@ On aired preview of content : [Link](https://clotes.gitlab.io)
 - [x] Mont Blanc Port
 - [x] Sahel Zone
 - [x] Oasis of Parasus
-- [x] Nera Harbor
 
 ## Credits
 assets maintained by [unmeimusu](https://github.com/unmeimusu)
