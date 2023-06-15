@@ -17,3 +17,6 @@ On aired preview of content : [Link](https://clotes.gitlab.io)
 
 ## Credits
 assets maintained by [unmeimusu](https://github.com/unmeimusu)
+
+## License
+[CC0](https://raw.githubusercontent.com/unmeimusu/items-clo/main/LICENSE)
