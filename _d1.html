@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Theme Toggle</title>
+  <style>
+    body {
+      background-color: lightgray;
+      color: black;
+    }
+
+    body.dark-mode {
+      background-color: rgb(36, 36, 36);
+      color: rgb(255, 255, 255);
+    }
+
+    .toggle {
+      position: fixed;
+      top: 10px;
+      right: 10px;
+    }
+
+    .toggle input[type="checkbox"] {
+      display: none;
+    }
+
+    .toggle label {
+      display: block;
+      width: 60px;
+      height: 30px;
+      background-color: rgba(53, 27, 27, 0.151);
+      border-radius: 15px;
+      cursor: pointer;
+      position: relative;
+    }
+
+    .toggle label:after {
+      content: "";
+      position: absolute;
+      top: 2px;
+      left: 2px;
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      background-color: white;
+      transition: 0.1s;
+    }
+
+    .toggle input[type="checkbox"]:checked + label {
+      background-color: rgb(23, 72, 121);
+    }
+
+    .toggle input[type="checkbox"]:checked + label:after {
+      left: calc(100% - 2px);
+      transform: translateX(-100%);
+    }
+
+    #output {
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="toggle">
+    <input type="checkbox" id="toggle-theme">
+    <label for="toggle-theme"></label>
+  </div>
+  <h1>Hello, World!</h1>
+  <button id="checkButton">Check Switch</button>
+  <div id="output"></div>
+  <script>
+    document.getElementById('toggle-theme').addEventListener('change', function () {
+      document.body.classList.toggle('dark-mode');
+    });
+
+    document.getElementById('checkButton').addEventListener('click', function() {
+      var switchChecked = document.getElementById('toggle-theme').checked;
+      var outputDiv = document.getElementById('output');
+      
+      if (switchChecked) {
+        outputDiv.textContent = "Switch is ON";
+      } else {
+        outputDiv.textContent = "Switch is OFF";
+      }
+    });
+  </script>
+</body>
+</html>
