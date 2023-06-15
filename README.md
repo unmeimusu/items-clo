@@ -26,7 +26,7 @@ New added features:
 - [x] Oasis of Parasus
 
 ## Credits
-assets maintained by [unmeimusu](https://github.com/unmeimusu)
+Assets maintained by [unmeimusu](https://github.com/unmeimusu)
 
 ## License
 [CC0 1.0 Universal](https://raw.githubusercontent.com/unmeimusu/items-clo/main/LICENSE)
