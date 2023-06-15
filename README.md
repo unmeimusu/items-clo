@@ -2,6 +2,15 @@
 ## Description of Contents
 On aired preview of content : [Link](https://clotes.gitlab.io)
 
+## Key of Features
+New added features:
+ - Mobile-first (Accessible on both mobile and desktop devices.)
+ - Search bar (Find any item by name,description, location, or NPC name.)
+ - Tag list (Click on tags to explore different item categories effortlessly.)
+ - Reset button (Just hit the reset button to clear filters and see all available items.)
+ - Buttons scroll to top, scroll to down
+ - Dark & Light Mode
+
 ### List of explored maps in Celestia Luna Online.
 - [x] Alker Harbor
 - [x] Alker Farms
