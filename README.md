@@ -1,6 +1,7 @@
 # Items List in Celestia Luna Online
 ## Description of Contents
 On aired preview of content : [Link](https://clotes.gitlab.io)
+
 ### List of explored maps in Celestia Luna Online.
 - [x] Alker Harbor
 - [x] Alker Farms
@@ -19,4 +20,4 @@ On aired preview of content : [Link](https://clotes.gitlab.io)
 assets maintained by [unmeimusu](https://github.com/unmeimusu)
 
 ## License
-[CC0](https://raw.githubusercontent.com/unmeimusu/items-clo/main/LICENSE)
+[CC0 1.0 Universal](https://raw.githubusercontent.com/unmeimusu/items-clo/main/LICENSE)
